@@ -58,6 +58,11 @@
         };
     </script>
 <style type="text/tailwindcss">
+        @layer base {
+            html, body {
+                @apply overflow-x-hidden w-full;
+            }
+        }
         @layer utilities {
             .bg-grid-slate-100 {
                 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(15 23 42 / 0.04)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E");
@@ -88,13 +93,13 @@
                 box-shadow: 0 0 0 1px rgba(255,255,255,.03), 0 30px 60px -12px rgba(0,0,0,0.5);
             }
             .bento-card {
-                @apply bg-white border-r border-b border-slate-100 p-10 flex flex-col transition-all duration-500 hover:bg-slate-50/50 dark:bg-slate-900/20 dark:border-white/5 dark:hover:bg-slate-900/40;
+                @apply bg-white border-r border-b border-slate-100 p-6 lg:p-10 flex flex-col transition-all duration-500 hover:bg-slate-50/50 dark:bg-slate-900/20 dark:border-white/5 dark:hover:bg-slate-900/40;
             }
             .testimonial-card {
-                @apply bg-white border border-slate-100/80 rounded-3xl p-8 flex flex-col transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.05)] hover:border-emerald-100/50 dark:bg-slate-900/40 dark:backdrop-blur-md dark:border-white/10 dark:hover:border-emerald-500/40;
+                @apply bg-white border border-slate-100/80 rounded-3xl p-6 lg:p-8 flex flex-col transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.05)] hover:border-emerald-100/50 dark:bg-slate-900/40 dark:backdrop-blur-md dark:border-white/10 dark:hover:border-emerald-500/40;
             }
             .pricing-card {
-                @apply bg-white border border-slate-200/60 rounded-[2.5rem] p-10 flex flex-col transition-all duration-500 hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.06)] dark:bg-slate-900/40 dark:backdrop-blur-md dark:border-white/10 dark:hover:border-emerald-500/40;
+                @apply bg-white border border-slate-200/60 rounded-[2rem] lg:rounded-[2.5rem] p-6 lg:p-10 flex flex-col transition-all duration-500 hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.06)] dark:bg-slate-900/40 dark:backdrop-blur-md dark:border-white/10 dark:hover:border-emerald-500/40;
             }
             .text-gradient-emerald {
                 background: linear-gradient(135deg, #10b981 0%, #059669 100%);
@@ -127,7 +132,7 @@
 
 
 <nav class="fixed top-0 w-full z-[100] border-b border-slate-100 bg-white/80 backdrop-blur-md dark:bg-slate-950/80 dark:border-slate-800">
-<div class="max-w-7xl mx-auto px-8 lg:px-24">
+<div class="max-w-7xl mx-auto px-4 lg:px-24">
 <div class="flex justify-between items-center h-20">
 <div class="flex items-center gap-3">
 <img alt="KhelkudAI Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8YGZDSAIOiLsG8cla996gXoZQX4OHVoJNj0rnlgjiqkyM7F2sA3hGS2N0dzVYgFQGf3QOH5MFNlkhuoOAxo20nS1L4We5bQ0mIeMt7xwrImxgSt3b0RAfUzc_bV9nTBHgWluYcPdzzGB3cCbhcu2_FPgj1uOOJM14T75kPAOqBVDRWWYsiy32o_KC6swC8pqsWZkRp5N_0ds0Ygr0QkVCTZ8KsPFQvgvSSQsSJLABaf6XIiO9Hv5Jbooom5MRbu9PfOTWyV1GBFzr"/>
@@ -157,7 +162,7 @@
 </nav>
 <section class="relative pt-24 pb-0 lg:pt-36 bg-white overflow-hidden bg-grid-slate-100 dark:bg-slate-950 dark:bg-grid-slate-800 text-center">
 <div class="absolute inset-0 bg-gradient-to-b from-white via-white/40 to-white dark:from-slate-950 dark:via-slate-950/40 dark:to-slate-950 pointer-events-none"></div>
-<div class="relative z-10 max-w-7xl mx-auto px-8 lg:px-24">
+<div class="relative z-10 max-w-7xl mx-auto px-4 lg:px-24">
 <div class="max-w-6xl mx-auto">
 <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100/50 text-emerald-700 font-bold text-[12px] tracking-[0.05em] uppercase mb-8 dark:bg-emerald-900/20 dark:border-emerald-500/30 dark:text-emerald-400">
 <span class="relative flex h-2 w-2">
@@ -166,10 +171,10 @@
 </span>
                 Next-Gen Enterprise Platform
             </div>
-<h1 class="text-6xl md:text-8xl lg:text-[100px] font-[900] leading-[1.1] tracking-[-0.05em] text-slate-900 dark:text-white mb-10">
+<h1 class="text-5xl md:text-8xl lg:text-[100px] font-[900] leading-[1.1] tracking-[-0.05em] text-slate-900 dark:text-white mb-10">
                 Sports Management,<br/><span class="text-gradient-emerald">Reimagined with AI</span>
 </h1>
-<p class="text-xl lg:text-[24px] text-slate-500 dark:text-slate-400 max-w-3xl mx-auto font-medium leading-relaxed mb-16">
+<p class="text-lg lg:text-[24px] text-slate-500 dark:text-slate-400 max-w-3xl mx-auto font-medium leading-relaxed mb-12 lg:mb-16 px-4">
                 Streamline operations, optimize performance, and scale your vision with the world's most advanced sports tech platform.
             </p>
 <div class="flex flex-col sm:flex-row gap-5 justify-center items-center pb-20">
@@ -182,11 +187,11 @@
                 </a>
 </div>
 </div>
-<div class="mt-10 relative max-w-[1200px] mx-auto">
+<div class="mt-10 relative w-full max-w-[1200px] mx-auto">
 <div class="absolute -inset-20 bg-emerald-400/10 blur-[140px] rounded-full opacity-60 -z-10"></div>
 <div class="dashboard-container rounded-[1.5rem] lg:rounded-[2.5rem] p-1 lg:p-1.5 overflow-hidden">
 <div class="bg-white/90 dark:bg-slate-900/90 rounded-[1.2rem] lg:rounded-[2.2rem] h-auto lg:h-[780px] flex flex-col lg:flex-row overflow-hidden">
-<aside class="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-slate-800 flex flex-col p-4 lg:p-6 bg-slate-50/40 dark:bg-slate-950/40 backdrop-blur-sm">
+<aside class="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-slate-100 dark:border-slate-800 flex flex-col p-3 lg:p-6 bg-slate-50/40 dark:bg-slate-950/40 backdrop-blur-sm">
 <div class="flex items-center justify-between lg:justify-start gap-3 mb-6 lg:mb-10 px-2">
 <div class="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center shadow-lg shadow-emerald-600/20">
 <span class="material-symbols-outlined text-white text-sm">bolt</span>
@@ -245,13 +250,13 @@
 </div>
 </div>
 </aside>
-<main id="dashboard-main" class="flex-1 bg-white/40 dark:bg-slate-900/40 p-4 lg:p-10 overflow-y-auto hide-scrollbar scroll-smooth">
-<header class="flex justify-between items-center mb-10">
+<main id="dashboard-main" class="flex-1 bg-white/40 dark:bg-slate-900/40 p-3 lg:p-10 overflow-y-auto hide-scrollbar scroll-smooth">
+<header class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 lg:mb-10">
 <div>
-<h2 id="dashboard-title" class="text-lg lg:text-2xl font-black text-slate-900 dark:text-white tracking-tight">Executive Dashboard</h2>
-<p id="dashboard-subtitle" class="text-sm font-medium text-slate-500 dark:text-slate-400">Live operational status across all global regions.</p>
+<h2 id="dashboard-title" class="text-lg lg:text-2xl font-black text-slate-900 dark:text-white tracking-tight leading-tight truncate">Executive Dashboard</h2>
+<p id="dashboard-subtitle" class="text-[10px] lg:text-sm font-medium text-slate-500 dark:text-slate-400 mt-1 truncate">Live operational status across all global regions.</p>
 </div>
-<div class="flex gap-3">
+<div class="flex items-center gap-2 lg:gap-3">
 <div class="hidden sm:flex bg-white/80 dark:bg-slate-800/80 px-4 py-2.5 rounded-xl items-center gap-2 border border-slate-200 dark:border-slate-700 shadow-sm">
 <span class="material-symbols-outlined text-slate-400 text-lg">search</span>
 <input class="bg-transparent border-none text-sm text-slate-900 dark:text-white focus:ring-0 p-0 w-40 placeholder:text-slate-400" placeholder="Type to search..." type="text"/>
@@ -796,19 +801,19 @@
         document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
 
         const originalDashboardContent = `
-            <div class="glass p-8 rounded-[2rem] border-slate-200 shadow-sm mb-8">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-8">
+            <div class="glass p-4 lg:p-8 rounded-[1.25rem] lg:rounded-[2rem] border-slate-200 shadow-sm mb-8">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                     <div>
                         <p class="text-[10px] lg:text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Revenue Forecast</p>
-                        <div class="flex items-baseline gap-3">
-                            <h3 class="text-3xl lg:text-4xl font-black text-slate-900 dark:text-white">$142,844.00</h3>
-                            <span class="px-2 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-lg font-bold text-[10px] lg:text-xs flex items-center gap-1">
+                        <div class="flex items-baseline gap-2">
+                            <h3 class="text-2xl lg:text-4xl font-black text-slate-900 dark:text-white">$142,844.00</h3>
+                            <span class="px-2 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-lg font-bold text-[9px] lg:text-xs flex items-center gap-1">
                                 <span class="material-symbols-outlined text-[10px] lg:text-xs">trending_up</span>
                                 +12.5%
                             </span>
                         </div>
                     </div>
-                    <div class="flex gap-6">
+                    <div class="flex flex-wrap gap-3 sm:gap-6">
                         <div class="flex items-center gap-2.5">
                             <div class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
                             <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Actual</span>
@@ -877,19 +882,19 @@
 
         const facilitiesContent = `
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-                <div class="glass p-8 rounded-[2rem] border-slate-200 shadow-sm group hover:shadow-xl transition-all">
+                <div class="glass p-5 lg:p-8 rounded-[1.5rem] lg:rounded-[2rem] border-slate-200 shadow-sm group hover:shadow-xl transition-all">
                     <div class="flex justify-between items-start mb-6">
-                        <div class="w-14 h-14 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600">
-                            <span class="material-symbols-outlined text-3xl">stadium</span>
+                        <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600">
+                            <span class="material-symbols-outlined text-2xl lg:text-3xl">stadium</span>
                         </div>
-                        <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-[10px] font-extrabold uppercase tracking-wider">Available</span>
+                        <span class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-[9px] lg:text-[10px] font-extrabold uppercase tracking-wider">Available</span>
                     </div>
-                    <h4 class="text-2xl font-black text-slate-900 dark:text-white mb-2">Main Arena Stadium</h4>
-                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-8">FIFA Grade A Synthetic Turf • Hybrid Lighting • 5K Seating</p>
-                    <div class="flex items-center gap-4">
-                        <button onclick="showDetails('facility', 'stadium')" class="flex-1 bg-slate-900 dark:bg-white dark:text-slate-950 text-white py-4 rounded-xl font-bold hover:bg-emerald-600 dark:hover:bg-emerald-500 transition-all">Manage Assets</button>
-                        <button class="w-12 h-12 border border-slate-200 dark:border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
-                            <span class="material-symbols-outlined">more_horiz</span>
+                    <h4 class="text-xl lg:text-2xl font-black text-slate-900 dark:text-white mb-2 truncate">Main Arena Stadium</h4>
+                    <p class="text-xs lg:text-sm font-medium text-slate-500 dark:text-slate-400 mb-6 lg:mb-8 line-clamp-2">FIFA Grade A Synthetic Turf • Hybrid Lighting • 5K Seating</p>
+                    <div class="flex items-center gap-3 lg:gap-4">
+                        <button onclick="showDetails('facility', 'stadium')" class="flex-1 bg-slate-900 dark:bg-white dark:text-slate-950 text-white py-3 lg:py-4 rounded-xl font-bold hover:bg-emerald-600 dark:hover:bg-emerald-500 transition-all text-sm lg:text-base">Manage Assets</button>
+                        <button class="w-10 h-10 lg:w-12 lg:h-12 border border-slate-200 dark:border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-xl lg:text-2xl">more_horiz</span>
                         </button>
                     </div>
                 </div>
@@ -960,21 +965,21 @@
 
         const analyticsContent = `
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                <div class="glass p-6 rounded-[1.5rem] border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="glass p-5 lg:p-6 rounded-[1.2rem] lg:rounded-[1.5rem] border-slate-200 dark:border-slate-800 shadow-sm">
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Global Reach</p>
                     <div class="flex items-baseline gap-2">
                         <h4 class="text-3xl font-black text-slate-900 dark:text-white">1.2M</h4>
                         <span class="text-emerald-500 text-[10px] font-bold flex items-center">+14%</span>
                     </div>
                 </div>
-                <div class="glass p-6 rounded-[1.5rem] border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="glass p-5 lg:p-6 rounded-[1.2rem] lg:rounded-[1.5rem] border-slate-200 dark:border-slate-800 shadow-sm">
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">AI Prediction Accuracy</p>
                     <div class="flex items-baseline gap-2">
                         <h4 class="text-3xl font-black text-slate-900 dark:text-white">98.4%</h4>
                         <span class="text-emerald-500 text-[10px] font-bold flex items-center">Stable</span>
                     </div>
                 </div>
-                <div class="glass p-6 rounded-[1.5rem] border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="glass p-5 lg:p-6 rounded-[1.2rem] lg:rounded-[1.5rem] border-slate-200 dark:border-slate-800 shadow-sm">
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Server Latency</p>
                     <div class="flex items-baseline gap-2">
                         <h4 class="text-3xl font-black text-slate-900 dark:text-white">12ms</h4>
@@ -984,7 +989,7 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
-                <div class="lg:col-span-8 glass p-8 rounded-[2rem] border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="lg:col-span-8 glass p-5 lg:p-8 rounded-[1.5rem] lg:rounded-[2rem] border-slate-200 dark:border-slate-800 shadow-sm">
                     <div class="flex justify-between items-center mb-10">
                         <h4 class="font-bold text-slate-900 dark:text-white">Engagement Velocity</h4>
                         <div class="flex gap-4">
@@ -1011,7 +1016,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="lg:col-span-4 glass p-8 rounded-[2rem] border-slate-200 dark:border-slate-800 shadow-sm flex flex-col">
+                <div class="lg:col-span-4 glass p-6 lg:p-8 rounded-[1.5rem] lg:rounded-[2rem] border-slate-200 dark:border-slate-800 shadow-sm flex flex-col">
                     <h4 class="font-bold text-slate-900 dark:text-white mb-8">Regional Pulse</h4>
                     <div class="space-y-6 flex-1">
                         <div class="space-y-2">
@@ -1039,18 +1044,18 @@
                 </div>
             </div>
 
-            <div class="glass p-8 rounded-[2rem] border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+            <div class="glass p-5 lg:p-8 rounded-[1.5rem] lg:rounded-[2rem] border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
                 <div class="flex items-center gap-4 mb-8">
                     <div class="w-10 h-10 rounded-xl bg-slate-900 dark:bg-white flex items-center justify-center text-white dark:text-slate-900">
                         <span class="material-symbols-outlined">terminal</span>
                     </div>
                     <h4 class="font-bold text-slate-900 dark:text-white uppercase tracking-tighter">Live AI Telemetry Feed</h4>
                 </div>
-                <div class="space-y-4 font-mono text-[11px]">
-                    <div class="flex gap-4 text-emerald-500/80"><span class="opacity-40">18:42:04</span><span>[PROCESS] Analyzing video stream #STAD-04...</span></div>
-                    <div class="flex gap-4 text-slate-400"><span class="opacity-40">18:42:01</span><span>[SUCCESS] Player detection model updated (v2.4.1)</span></div>
-                    <div class="flex gap-4 text-amber-500/80"><span class="opacity-40">18:41:58</span><span>[WARNING] Unusual bounce detected in sector B12</span></div>
-                    <div class="flex gap-4 text-slate-400"><span class="opacity-40">18:41:55</span><span>[NETWORK] Handshake established with Singapore Edge</span></div>
+                <div class="space-y-4 font-mono text-[10px] lg:text-[11px] overflow-hidden">
+                    <div class="flex gap-4 text-emerald-500/80"><span class="opacity-40 shrink-0">18:42:04</span><span class="truncate">[PROCESS] Analyzing video stream #STAD-04...</span></div>
+                    <div class="flex gap-4 text-slate-400"><span class="opacity-40 shrink-0">18:42:01</span><span class="truncate">[SUCCESS] Player detection model updated (v2.4.1)</span></div>
+                    <div class="flex gap-4 text-amber-500/80"><span class="opacity-40 shrink-0">18:41:58</span><span class="truncate">[WARNING] Unusual bounce detected in sector B12</span></div>
+                    <div class="flex gap-4 text-slate-400"><span class="opacity-40 shrink-0">18:41:55</span><span class="truncate">[NETWORK] Handshake established with Singapore Edge</span></div>
                 </div>
             </div>
         `;
@@ -1069,29 +1074,29 @@
                     </thead>
                     <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
                         <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer">
-                            <td class="px-8 py-5">
-                                <div class="flex items-center gap-3">
+                            <td class="px-4 lg:px-8 py-4 lg:py-5">
+                                <div class="flex items-center gap-2 lg:gap-3">
                                     <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100" class="w-8 h-8 rounded-full border border-slate-200 dark:border-slate-700" />
-                                    <div>
-                                        <p class="font-bold text-slate-900 dark:text-white text-[14px]">Marcus Thorne</p>
-                                        <p class="text-[10px] text-slate-400 font-medium">marcus.t@khelkud.com</p>
+                                    <div class="max-w-[100px] lg:max-w-none">
+                                        <p class="font-bold text-slate-900 dark:text-white text-[13px] lg:text-[14px] truncate">Marcus Thorne</p>
+                                        <p class="text-[9px] lg:text-[10px] text-slate-400 font-medium truncate">marcus.t@khelkud.com</p>
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-8 py-5 text-sm font-bold text-emerald-600 dark:text-emerald-400 italic">Elite Pro</td>
-                            <td class="px-8 py-5">
-                                <div class="flex -space-x-2">
-                                    <div class="w-6 h-6 rounded-full bg-emerald-500 border-2 border-white dark:border-slate-900 flex items-center justify-center text-[8px] text-white font-bold">12</div>
-                                    <div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 border-2 border-white dark:border-slate-900 flex items-center justify-center text-[8px] font-bold text-slate-500">24</div>
+                            <td class="px-4 lg:px-8 py-4 lg:py-5 text-xs lg:text-sm font-bold text-emerald-600 dark:text-emerald-400 italic">Elite Pro</td>
+                            <td class="px-4 lg:px-8 py-4 lg:py-5">
+                                <div class="flex -space-x-1.5 lg:-space-x-2">
+                                    <div class="w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-emerald-500 border-2 border-white dark:border-slate-900 flex items-center justify-center text-[7px] lg:text-[8px] text-white font-bold">12</div>
+                                    <div class="w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-slate-200 dark:bg-slate-700 border-2 border-white dark:border-slate-900 flex items-center justify-center text-[7px] lg:text-[8px] font-bold text-slate-500">24</div>
                                 </div>
                             </td>
-                            <td class="px-8 py-5 text-sm font-medium text-slate-600 dark:text-slate-400">
-                                <div class="flex items-center gap-2">
+                            <td class="px-4 lg:px-8 py-4 lg:py-5 text-xs lg:text-sm font-medium text-slate-600 dark:text-slate-400">
+                                <div class="flex items-center gap-1.5 lg:gap-2">
                                     <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></div>
-                                    Online
+                                    <span class="whitespace-nowrap">Online</span>
                                 </div>
                             </td>
-                            <td class="px-8 py-5 text-sm font-bold text-slate-900 dark:text-white">94%</td>
+                            <td class="px-4 lg:px-8 py-4 lg:py-5 text-xs lg:text-sm font-bold text-slate-900 dark:text-white">94%</td>
                         </tr>
                         <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer">
                             <td class="px-8 py-5">
@@ -1151,7 +1156,7 @@
         const settingsContent = `
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 <div class="lg:col-span-8 space-y-8">
-                    <div class="glass p-8 rounded-[2rem] border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="glass p-5 lg:p-8 rounded-[1.5rem] lg:rounded-[2rem] border-slate-200 dark:border-slate-800 shadow-sm">
                         <h4 class="font-bold text-slate-900 dark:text-white mb-8 uppercase tracking-tight">API Infrastructure</h4>
                         <div class="space-y-6">
                             <div class="p-6 bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-100 dark:border-slate-800">
@@ -1159,10 +1164,10 @@
                                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Production API Key</p>
                                     <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-500 text-[10px] font-bold rounded uppercase">Active</span>
                                 </div>
-                                <div class="flex items-center gap-4">
-                                    <code class="flex-1 bg-white dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-sm font-mono text-slate-600 dark:text-slate-400">kh_prod_84920xxxxxxxxxxxxxx72b</code>
-                                    <button class="p-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl hover:opacity-80 transition-opacity">
-                                        <span class="material-symbols-outlined text-sm">content_copy</span>
+                                <div class="flex items-center gap-2 lg:gap-4">
+                                    <code class="flex-1 bg-white dark:bg-slate-950 p-2.5 lg:p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] lg:text-sm font-mono text-slate-600 dark:text-slate-400 truncate tracking-tighter">kh_prod_84920xxxxxxxxxxxxxx72b</code>
+                                    <button class="p-2.5 lg:p-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl hover:opacity-80 transition-opacity flex-shrink-0">
+                                        <span class="material-symbols-outlined text-[16px] lg:text-sm">content_copy</span>
                                     </button>
                                 </div>
                             </div>
@@ -1191,7 +1196,7 @@
                         </div>
                     </div>
 
-                    <div class="glass p-8 rounded-[2rem] border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="glass p-5 lg:p-8 rounded-[1.5rem] lg:rounded-[2rem] border-slate-200 dark:border-slate-800 shadow-sm">
                         <h4 class="font-bold text-slate-900 dark:text-white mb-8 uppercase tracking-tight">Security & Governance</h4>
                         <div class="space-y-4">
                             <div class="flex items-center justify-between p-2">
@@ -1217,7 +1222,7 @@
                 </div>
 
                 <div class="lg:col-span-4 space-y-8">
-                    <div class="bg-slate-900 dark:bg-slate-800/80 p-8 rounded-[2rem] text-white border border-slate-800/50">
+                    <div class="bg-slate-900 dark:bg-slate-800/80 p-5 lg:p-8 rounded-[1.5rem] lg:rounded-[2rem] text-white border border-slate-800/50">
                         <h5 class="font-bold mb-6 tracking-tight flex items-center gap-2">
                             <span class="material-symbols-outlined text-emerald-500">verified_user</span>
                             System Health
