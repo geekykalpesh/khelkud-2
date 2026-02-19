@@ -104,8 +104,15 @@
             .text-gradient-emerald {
                 background: linear-gradient(135deg, #10b981 0%, #059669 100%);
                 -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
                 background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .hide-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
             }
             .fill-1 { font-variation-settings: 'FILL' 1; }
             .thin-icon { font-variation-settings: 'wght' 200; }
@@ -119,13 +126,6 @@
                 background: rgba(255, 255, 255, 0.03);
                 backdrop-filter: blur(10px);
                 border: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            .hide-scrollbar::-webkit-scrollbar {
-                display: none;
-            }
-            .hide-scrollbar {
-                -ms-overflow-style: none; /* IE and Edge */
-                scrollbar-width: none; /* Firefox */
             }
         }
     </style>
@@ -160,7 +160,7 @@
 </div>
 </div>
 </nav>
-<section class="relative pt-24 pb-0 lg:pt-36 bg-white overflow-hidden bg-grid-slate-100 dark:bg-slate-950 dark:bg-grid-slate-800 text-center">
+<section class="relative pt-32 pb-0 lg:pt-36 bg-white overflow-hidden bg-grid-slate-100 dark:bg-slate-950 dark:bg-grid-slate-800 text-center">
 <div class="absolute inset-0 bg-gradient-to-b from-white via-white/40 to-white dark:from-slate-950 dark:via-slate-950/40 dark:to-slate-950 pointer-events-none"></div>
 <div class="relative z-10 max-w-7xl mx-auto px-4 lg:px-24">
 <div class="max-w-6xl mx-auto">
@@ -187,7 +187,7 @@
                 </a>
 </div>
 </div>
-<div class="mt-10 relative w-full max-w-[1200px] mx-auto">
+<div class="mt-24 lg:mt-10 relative w-full max-w-[1200px] mx-auto">
 <div class="absolute -inset-20 bg-emerald-400/10 blur-[140px] rounded-full opacity-60 -z-10"></div>
 <div class="dashboard-container rounded-[1.5rem] lg:rounded-[2.5rem] p-1 lg:p-1.5 overflow-hidden">
 <div class="bg-white/90 dark:bg-slate-900/90 rounded-[1.2rem] lg:rounded-[2.2rem] h-auto lg:h-[780px] flex flex-col lg:flex-row overflow-hidden">
@@ -198,46 +198,35 @@
 </div>
 <span class="font-bold text-slate-900 dark:text-white tracking-tight">Khelkud Pro</span>
 </div>
-<nav class="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible hide-scrollbar pb-2 lg:pb-0 lg:flex-1">
-<a id="nav-dashboard" class="group flex-shrink-0 whitespace-nowrap lg:relative flex items-center justify-between px-4 py-2 bg-white dark:bg-slate-800 shadow-sm border border-slate-200/60 dark:border-slate-700 rounded-xl text-emerald-600 font-bold cursor-pointer" onclick="updateDashboardView('dashboard')">
-<div class="flex items-center gap-3">
+<nav class="flex lg:flex-col gap-2.5 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2 lg:pb-0 lg:flex-1 lg:mx-0 lg:px-0 scroll-touch">
+<a id="nav-dashboard" class="flex-shrink-0 whitespace-nowrap flex items-center gap-2.5 px-4 py-2.5 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-500/30 rounded-xl text-emerald-600 dark:text-emerald-400 font-bold cursor-pointer transition-all active:scale-95 shadow-sm shadow-emerald-500/5" onclick="updateDashboardView('dashboard')">
 <span class="material-symbols-outlined text-[20px] fill-1">grid_view</span>
-                                    Dashboard
-                                </div>
-<div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] nav-indicator"></div>
+Dashboard
+<div class="w-1 h-1 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] nav-indicator"></div>
 </a>
-<a id="nav-facilities" class="flex-shrink-0 whitespace-nowrap flex items-center justify-between px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-xl transition-all cursor-pointer" onclick="updateDashboardView('facilities')">
-<div class="flex items-center gap-3">
+<a id="nav-facilities" class="flex-shrink-0 whitespace-nowrap flex items-center gap-2.5 px-4 py-2.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-xl transition-all cursor-pointer" onclick="updateDashboardView('facilities')">
 <span class="material-symbols-outlined text-[20px]">calendar_month</span>
-                                    Facilities
-                                </div>
-<span class="bg-slate-200/50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-[10px] px-1.5 py-0.5 rounded-md font-bold">12</span>
+Facilities
+<span class="bg-slate-200/50 dark:bg-slate-800/80 text-slate-500 dark:text-slate-400 text-[10px] px-1.5 py-0.5 rounded-md font-bold">12</span>
 </a>
-<a id="nav-tournaments" class="flex-shrink-0 whitespace-nowrap flex items-center justify-between px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-xl transition-all cursor-pointer" onclick="updateDashboardView('tournaments')">
-<div class="flex items-center gap-3">
+<a id="nav-tournaments" class="flex-shrink-0 whitespace-nowrap flex items-center gap-2.5 px-4 py-2.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-xl transition-all cursor-pointer" onclick="updateDashboardView('tournaments')">
 <span class="material-symbols-outlined text-[20px]">emoji_events</span>
-                                    Tournaments
-                                </div>
-<div class="flex items-center gap-1.5">
+Tournaments
 <span class="bg-emerald-500 text-white text-[10px] px-1.5 py-0.5 rounded-md font-bold">3</span>
-<div class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div>
-</div>
 </a>
-<a id="nav-analytics" class="flex-shrink-0 whitespace-nowrap flex items-center gap-3 px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:white transition-colors cursor-pointer" onclick="updateDashboardView('analytics')">
+<a id="nav-analytics" class="flex-shrink-0 whitespace-nowrap flex items-center gap-2.5 px-4 py-2.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-xl transition-all cursor-pointer" onclick="updateDashboardView('analytics')">
 <span class="material-symbols-outlined text-[20px]">monitoring</span>
-                                Analytics
-                            </a>
-<a id="nav-members" class="flex-shrink-0 whitespace-nowrap flex items-center justify-between px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:white transition-colors cursor-pointer" onclick="updateDashboardView('members')">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-[20px]">group</span>
-                                    Members
-                                </div>
-<span class="w-5 h-5 flex items-center justify-center bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-[10px] rounded-full font-bold">5</span>
+Analytics
 </a>
-<a id="nav-settings" class="flex-shrink-0 whitespace-nowrap flex items-center gap-3 px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:white transition-colors cursor-pointer" onclick="updateDashboardView('settings')">
+<a id="nav-members" class="flex-shrink-0 whitespace-nowrap flex items-center gap-2.5 px-4 py-2.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-xl transition-all cursor-pointer" onclick="updateDashboardView('members')">
+<span class="material-symbols-outlined text-[20px]">group</span>
+Members
+<span class="w-4 h-4 flex items-center justify-center bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-[9px] rounded-full font-bold">5</span>
+</a>
+<a id="nav-settings" class="flex-shrink-0 whitespace-nowrap flex items-center gap-2.5 px-4 py-2.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:white hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-xl transition-all cursor-pointer" onclick="updateDashboardView('settings')">
 <span class="material-symbols-outlined text-[20px]">settings</span>
-                                Settings
-                            </a>
+Settings
+</a>
 </nav>
 <div class="hidden lg:block mt-auto pt-6 border-t border-slate-200/60 dark:border-slate-800">
 <div class="flex items-center gap-3 px-2">
