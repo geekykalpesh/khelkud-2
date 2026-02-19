@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KhelkudAI - The Intelligent Operating System for Sports</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0D6654",
+                        emerald: {
+                            50: "#ecfdf5",
+                            100: "#d1fae5",
+                            200: "#a7f3d0",
+                            500: "#10b981",
+                            600: "#059669",
+                            700: "#047857",
+                        }
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
+                    },
+                    borderRadius: {
+                        '4xl': '32px',
+                    },
+                    animation: {
+                        'marquee': 'marquee 30s linear infinite',
+                        'marquee-slow': 'marquee-slow 50s linear infinite',
+                        'pulse-subtle': 'pulse-subtle 3s ease-in-out infinite',
+                        'scanning': 'scanning 2s linear infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        'marquee-slow': {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        'pulse-subtle': {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: 0.5 },
+                        },
+                        scanning: {
+                            '0%': { transform: 'translateY(0%)' },
+                            '100%': { transform: 'translateY(100%)' }
+                        }
+                    }
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .bg-grid-slate-100 {
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(15 23 42 / 0.04)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E");
+            }
+            .glass {
+                background: rgba(255, 255, 255, 0.65);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.4);
+            }
+            .dashboard-container {
+                background: rgba(255, 255, 255, 0.4);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                border: 1px solid rgba(255, 255, 255, 0.5);
+                box-shadow: 0 0 0 1px rgba(0,0,0,.03), 0 30px 60px -12px rgba(0,0,0,0.18);
+            }
+            .bento-card {
+                @apply bg-white border border-slate-100 rounded-4xl p-10 flex flex-col transition-all duration-500 hover:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] hover:-translate-y-1;
+            }
+            .testimonial-card {
+                @apply bg-white border border-slate-100/80 rounded-3xl p-8 flex flex-col transition-all duration-300 hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.05)] hover:border-emerald-100/50;
+            }
+            .pricing-card {
+                @apply bg-white border border-slate-200/60 rounded-[2.5rem] p-10 flex flex-col transition-all duration-500 hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.06)];
+            }
+            .text-gradient-emerald {
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .fill-1 { font-variation-settings: 'FILL' 1; }
+            .thin-icon { font-variation-settings: 'wght' 200; }
+            .mask-fade-edges {
+                mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            }
+            .contact-input {
+                @apply w-full bg-white/40 border border-slate-200/60 rounded-xl px-5 py-4 text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500/40 focus:bg-white/80 transition-all outline-none backdrop-blur-sm;
+            }
+            .glass-newsletter {
+                background: rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .hide-scrollbar {
+                -ms-overflow-style: none; /* IE and Edge */
+                scrollbar-width: none; /* Firefox */
+            }
+        }
+    </style>
+
+
+<nav class="fixed top-0 w-full z-[100] border-b border-slate-100 bg-white/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-8 lg:px-24">
+<div class="flex justify-between items-center h-20">
+<div class="flex items-center gap-3">
+<img alt="KhelkudAI Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8YGZDSAIOiLsG8cla996gXoZQX4OHVoJNj0rnlgjiqkyM7F2sA3hGS2N0dzVYgFQGf3QOH5MFNlkhuoOAxo20nS1L4We5bQ0mIeMt7xwrImxgSt3b0RAfUzc_bV9nTBHgWluYcPdzzGB3cCbhcu2_FPgj1uOOJM14T75kPAOqBVDRWWYsiy32o_KC6swC8pqsWZkRp5N_0ds0Ygr0QkVCTZ8KsPFQvgvSSQsSJLABaf6XIiO9Hv5Jbooom5MRbu9PfOTWyV1GBFzr"/>
+<span class="text-xl font-black tracking-tight text-slate-900">KHELKUD<span class="text-emerald-600">AI</span></span>
+</div>
+<div class="hidden lg:flex items-center space-x-10">
+<a class="text-[15px] font-medium text-slate-600 hover:text-emerald-600 transition-colors" href="#services">Platform</a>
+<a class="text-[15px] font-medium text-slate-600 hover:text-emerald-600 transition-colors" href="#features">Solutions</a>
+<a class="text-[15px] font-medium text-slate-600 hover:text-emerald-600 transition-colors" href="#pricing">Pricing</a>
+<div class="h-4 w-[1px] bg-slate-200"></div>
+<a class="text-[15px] font-semibold text-slate-900" href="#">Sign In</a>
+<a class="bg-slate-900 text-white px-6 py-2.5 rounded-full text-[14px] font-semibold hover:bg-emerald-600 transition-all" href="#">Get Started</a>
+</div>
+<div class="lg:hidden">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</div>
+</div>
+</div>
+</nav>
+<section class="relative pt-40 pb-0 lg:pt-64 bg-white overflow-hidden bg-grid-slate-100">
+<div class="absolute inset-0 bg-gradient-to-b from-white via-white/40 to-white pointer-events-none"></div>
+<div class="relative z-10 max-w-7xl mx-auto px-8 lg:px-24">
+<div class="text-center max-w-6xl mx-auto">
+<div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100/50 text-emerald-700 font-bold text-[12px] tracking-[0.05em] uppercase mb-12">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+                Next-Gen Enterprise Platform
+            </div>
+<h1 class="text-6xl md:text-8xl lg:text-[100px] font-[900] leading-[1.1] tracking-[-0.05em] text-slate-900 mb-10">
+                Sports Management,<br/><span class="text-gradient-emerald">Reimagined with AI</span>
+</h1>
+<p class="text-xl lg:text-[24px] text-slate-500 max-w-3xl mx-auto font-medium leading-relaxed mb-16">
+                Streamline operations, optimize performance, and scale your vision with the world's most advanced sports tech platform.
+            </p>
+<div class="flex flex-col sm:flex-row gap-5 justify-center items-center pb-20">
+<a class="w-full sm:w-auto bg-slate-900 text-white px-12 py-5 rounded-2xl font-bold text-lg hover:bg-emerald-600 hover:-translate-y-1 transition-all duration-300 shadow-xl shadow-slate-200" href="#">
+                    Start Free Trial
+                </a>
+<a class="w-full sm:w-auto bg-white border border-slate-200 text-slate-900 px-12 py-5 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined">play_circle</span>
+                    Watch Overview
+                </a>
+</div>
+</div>
+<div class="mt-10 relative max-w-[1200px] mx-auto">
+<div class="absolute -inset-20 bg-emerald-400/10 blur-[140px] rounded-full opacity-60 -z-10"></div>
+<div class="dashboard-container rounded-[2.5rem] p-1.5 overflow-hidden">
+<div class="bg-white/90 rounded-[2.2rem] h-[780px] flex overflow-hidden">
+<aside class="w-64 border-r border-slate-100 flex flex-col p-6 bg-slate-50/40 backdrop-blur-sm">
+<div class="flex items-center gap-3 mb-10 px-2">
+<div class="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center shadow-lg shadow-emerald-600/20">
+<span class="material-symbols-outlined text-white text-sm">bolt</span>
+</div>
+<span class="font-bold text-slate-900 tracking-tight">Khelkud Pro</span>
+</div>
+<nav class="space-y-1.5 flex-1">
+<a class="group relative flex items-center justify-between px-3.5 py-2.5 bg-white shadow-sm border border-slate-200/60 rounded-xl text-emerald-600 font-bold" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] fill-1">grid_view</span>
+                                    Dashboard
+                                </div>
+<div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></div>
+</a>
+<a class="flex items-center justify-between px-3.5 py-2.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100/50 rounded-xl transition-all" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+                                    Facilities
+                                </div>
+<span class="bg-slate-200/50 text-slate-600 text-[10px] px-1.5 py-0.5 rounded-md font-bold">12</span>
+</a>
+<a class="flex items-center justify-between px-3.5 py-2.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100/50 rounded-xl transition-all" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">emoji_events</span>
+                                    Tournaments
+                                </div>
+<div class="flex items-center gap-1.5">
+<span class="bg-emerald-500 text-white text-[10px] px-1.5 py-0.5 rounded-md font-bold">3</span>
+<div class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div>
+</div>
+</a>
+<a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-500 hover:text-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+                                Analytics
+                            </a>
+<a class="flex items-center justify-between px-3.5 py-2.5 text-slate-500 hover:text-slate-900 transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">group</span>
+                                    Members
+                                </div>
+<span class="w-5 h-5 flex items-center justify-center bg-red-100 text-red-600 text-[10px] rounded-full font-bold">5</span>
+</a>
+<a class="flex items-center gap-3 px-3.5 py-2.5 text-slate-500 hover:text-slate-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                                Settings
+                            </a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-200/60">
+<div class="flex items-center gap-3 px-2">
+<img alt="Profile" class="w-10 h-10 rounded-full border border-slate-100 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQv45cvGaaQgorNdmpJHrnnNOeN1QFypa4j9Z6H6zAMWD53FA7jMjBEpLsOB4pMq2iVtqoG-4cc1GPPm2mP2zEaKqeFTgz12ZzBSMdNuwZaqU5ilZ118FknB4hv76GGf1jj1se9cZMZKoP_1qrS_S-sxZOHBYWaqOyAEzgjJnzPL2PC27G9f7LB8YqhgyRwkvX0x4hHZM9zyByRFH6WC7e40sDTsCIeIa2tv30vLJnqbEd5HjN5A9CmSj-4kqIX_YgrKOeDWppgRTP"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold text-slate-900 truncate">Alex Rivers</p>
+<p class="text-[10px] text-slate-400 font-medium uppercase tracking-wider">Admin Level 4</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-lg ml-auto">unfold_more</span>
+</div>
+</div>
+</aside>
+<main class="flex-1 bg-white/40 p-10 overflow-y-auto hide-scrollbar">
+<header class="flex justify-between items-center mb-10">
+<div>
+<h2 class="text-2xl font-black text-slate-900 tracking-tight">Executive Dashboard</h2>
+<p class="text-sm font-medium text-slate-500">Live operational status across all global regions.</p>
+</div>
+<div class="flex gap-3">
+<div class="bg-white/80 px-4 py-2.5 rounded-xl flex items-center gap-2 border border-slate-200 shadow-sm">
+<span class="material-symbols-outlined text-slate-400 text-lg">search</span>
+<input class="bg-transparent border-none text-sm focus:ring-0 p-0 w-40" placeholder="Type to search..." type="text"/>
+</div>
+<button class="relative w-11 h-11 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-400 shadow-sm">
+<span class="material-symbols-outlined text-xl">notifications</span>
+<span class="absolute top-3 right-3 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<button class="bg-slate-900 text-white px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 shadow-lg shadow-slate-900/10">
+<span class="material-symbols-outlined text-sm">add</span>
+                                    New Booking
+                                </button>
+</div>
+</header>
+<div class="glass p-8 rounded-[2rem] border-slate-200 shadow-sm mb-8">
+<div class="flex items-center justify-between mb-8">
+<div>
+<p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">Revenue Forecast</p>
+<div class="flex items-baseline gap-3">
+<h3 class="text-4xl font-black text-slate-900">$142,844.00</h3>
+<span class="px-2 py-1 bg-emerald-50 text-emerald-600 rounded-lg font-bold text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">trending_up</span>
+                                            +12.5%
+                                        </span>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex items-center gap-2.5">
+<div class="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Actual</span>
+</div>
+<div class="flex items-center gap-2.5">
+<div class="w-3 h-3 rounded-full bg-teal-200"></div>
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Projected</span>
+</div>
+</div>
+</div>
+<div class="relative h-48 w-full overflow-hidden rounded-xl">
+<svg class="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+<path d="M0 80 Q 20 70, 40 75 T 80 60 T 100 50 L 100 100 L 0 100 Z" fill="rgba(20, 184, 166, 0.08)"></path>
+<path d="M0 80 Q 20 70, 40 75 T 80 60 T 100 50" fill="none" stroke="#99f6e4" stroke-dasharray="4" stroke-width="2"></path>
+</svg>
+<svg class="absolute inset-0 h-full w-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+<defs>
+<linearGradient id="grad-emerald-main" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:rgba(16, 185, 129, 0.3); stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:rgba(16, 185, 129, 0); stop-opacity:0"></stop>
+</linearGradient>
+</defs>
+<path d="M0 90 Q 25 85, 40 60 T 70 45 T 100 30 L 100 100 L 0 100 Z" fill="url(#grad-emerald-main)"></path>
+<path d="M0 90 Q 25 85, 40 60 T 70 45 T 100 30" fill="none" stroke="#10b981" stroke-width="3.5"></path>
+</svg>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8 mb-8">
+<div class="glass p-8 rounded-[2rem] border-slate-200 shadow-sm flex items-center justify-between">
+<div class="space-y-4">
+<p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Real-time Occupancy</p>
+<div>
+<h4 class="text-4xl font-black text-slate-900">88.2%</h4>
+<p class="text-[11px] font-bold text-emerald-600 uppercase mt-1 tracking-tight">Critical Peak Load</p>
+</div>
+</div>
+<div class="relative w-28 h-28 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+<circle class="text-slate-100" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-emerald-500" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="30" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-900 text-2xl font-bold">speed</span>
+</div>
+</div>
+</div>
+<div class="glass p-8 rounded-[2rem] border-slate-200 shadow-sm">
+<p class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-5">Member Growth</p>
+<div class="flex items-center justify-between">
+<div>
+<h4 class="text-4xl font-black text-slate-900">2,841</h4>
+<p class="text-[11px] font-bold text-slate-500 uppercase mt-1">+184 Today</p>
+</div>
+<div class="flex items-end gap-1.5 h-16">
+<div class="w-2 bg-slate-100 rounded-full h-6"></div>
+<div class="w-2 bg-slate-100 rounded-full h-10"></div>
+<div class="w-2 bg-slate-200 rounded-full h-8"></div>
+<div class="w-2 bg-emerald-200 rounded-full h-14"></div>
+<div class="w-2 bg-emerald-500 rounded-full h-16"></div>
+<div class="w-2 bg-emerald-600 rounded-full h-12"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 border-b border-slate-100 overflow-hidden bg-white">
+<div class="max-w-7xl mx-auto px-8 lg:px-24 mb-14">
+<p class="text-center text-[13px] font-bold uppercase tracking-[0.25em] text-slate-400">Endorsed by Global Performance Hubs</p>
+</div>
+<div class="relative flex items-center group pause-on-hover mask-fade-edges">
+<div class="flex gap-24 items-center animate-marquee whitespace-nowrap min-w-full">
+<img alt="Partner 1" class="h-9 w-auto opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf3dTKAt2aaOIHDIDWF_X7cbUa5p8ZanHGBtKGQlp75LsX5jtqKFHZzxkKOQ1yjWZofsDXbbkEOkwaQf3eqodcHl69mXAV8kVwuu6jEX8AUFbd5SJZlCJmK7K4tM7VGVrDVc3KDWXHXQKZnbD1M455ZysS3qYA8j6Is7pqPmZkjwM4Ysa_4JM-u_PpDY1W1efWWs3n6tlXedyFhBgVY5SOxqv7URaJ3vRiCugl0M9vBugRvfPNqows4YeaRYfq4PjSn8K2Oe-Vp1QT"/>
+<img alt="Partner 2" class="h-9 w-auto opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1tZaqm7TDzsDBSXKoT9zwt9BFnltMQnxjczX38yP3MIpcnoajmjQ_gLPeF-70l1y9Z8pWzGygvHwFLyxWe0hmNHTLwv2sbt4J2tpWISEPkpiOwuQEES3_TNiI53Dojk359gcS8TiodCf4SE0iocXn00GiuBU2ExXvclDbauteuLlinvHQZCCZy-Yj6Fex5mJWg-MLY2qsyhxhIc3_z0ENEx2301HhivyZ4cFd3KJH_LLfmIb-4_eLLyb1ml1DM6UVfDvCbYonns1_"/>
+<img alt="Partner 3" class="h-9 w-auto opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrKWV3DeJd1nc_BSfmGRUBbOQ43oR0nGSkzYVdXGZo9i5x8B5DNqroZwwkSc0dcFD-RxyCDlOSfi2Xjg0NWFGOob9aPaSg2I7fUQIzMeDBnjY7k29nMHj_FmJtgLGFRVH-xt4XVG0cPzc32K3AENV5ud7kBplpdHI5qBEU1GLgtBP0KeS7qslTn-skhPuQF2JxXttT7DKKgYKwzEsTnse18NslVYA1GCaS_2NOA-JD19JWG3v8W_SrwLoViRO4UEXvrJ98to8XcrkI"/>
+<img alt="Partner 4" class="h-9 w-auto opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_khWpOTc8GwLpvqUgVK8uBdTluOF7YlL137OcVCIyOVIsmpIJ2HQ3KYG0bKBCGT8OaB4zGbm01giVmvsNV_G6ICqiqtGJKWrtxzNoOVudT85-zw6hxljhtauF9ecsSXeIjkS5V1KnWeKnPHLgO_4wweKqo05xB2HQG-Z8vX-IBgVgzXXoqgtUosiD1ISaSjHS4SX6xRgLA0et-N5wtEN9V9jpCGoInjk4h6rQ6M1_Fgx89R1wAjJ_vRLWPHEw2bTSoGe66K4XTQ5K"/>
+<img alt="Partner 5" class="h-9 w-auto opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAqI7X3gV61B5BwbREmzGSfNKl1WhhQDxT_3dYt_awYl_X6yUMr1CSfygMbsxrIhx1mtRBulvYFN2w1vzBi0rn61jP2QCtjeNvnS6_3_isIvylm2QXAvXqfFqVwe5xeYs97bNmL8KF-7aP37U0HjH40eRd4onusojop2aI1DJMw_fFdgK4gR19_y1gwVyojNBOmfU-JF52HZChtu6Zqz92KSD2L5XFYbvTIGI0D1q0jI_Fm0mIUg0GMj1bduuvkTEkOAAIh3O4R5EC"/>
+<img alt="Partner 6" class="h-9 w-auto opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf3dTKAt2aaOIHDIDWF_X7cbUa5p8ZanHGBtKGQlp75LsX5jtqKFHZzxkKOQ1yjWZofsDXbbkEOkwaQf3eqodcHl69mXAV8kVwuu6jEX8AUFbd5SJZlCJmK7K4tM7VGVrDVc3KDWXHXQKZnbD1M455ZysS3qYA8j6Is7pqPmZkjwM4Ysa_4JM-u_PpDY1W1efWWs3n6tlXedyFhBgVY5SOxqv7URaJ3vRiCugl0M9vBugRvfPNqows4YeaRYfq4PjSn8K2Oe-Vp1QT"/>
+<img alt="Partner 7" class="h-9 w-auto opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1tZaqm7TDzsDBSXKoT9zwt9BFnltMQnxjczX38yP3MIpcnoajmjQ_gLPeF-70l1y9Z8pWzGygvHwFLyxWe0hmNHTLwv2sbt4J2tpWISEPkpiOwuQEES3_TNiI53Dojk359gcS8TiodCf4SE0iocXn00GiuBU2ExXvclDbauteuLlinvHQZCCZy-Yj6Fex5mJWg-MLY2qsyhxhIc3_z0ENEx2301HhivyZ4cFd3KJH_LLfmIb-4_eLLyb1ml1DM6UVfDvCbYonns1_"/>
+<img alt="Partner 8" class="h-9 w-auto opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrKWV3DeJd1nc_BSfmGRUBbOQ43oR0nGSkzYVdXGZo9i5x8B5DNqroZwwkSc0dcFD-RxyCDlOSfi2Xjg0NWFGOob9aPaSg2I7fUQIzMeDBnjY7k29nMHj_FmJtgLGFRVH-xt4XVG0cPzc32K3AENV5ud7kBplpdHI5qBEU1GLgtBP0KeS7qslTn-skhPuQF2JxXttT7DKKgYKwzEsTnse18NslVYA1GCaS_2NOA-JD19JWG3v8W_SrwLoViRO4UEXvrJ98to8XcrkI"/>
+</div>
+</div>
+</section>
+<section class="py-32 bg-white" id="services">
+<div class="max-w-7xl mx-auto px-8 lg:px-24">
+<div class="max-w-3xl mb-24">
+<h2 class="text-4xl md:text-6xl font-black text-slate-900 mb-8 leading-[1.1] tracking-tight">The complete toolkit for <br/>high-growth sports ecosystems.</h2>
+<p class="text-xl text-slate-500 font-medium">Modular, intelligent, and designed to disappear into your workflow.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-6 grid-rows-2 gap-6 h-auto lg:h-[700px]">
+<div class="md:col-span-4 md:row-span-1 bento-card group flex flex-row items-center gap-10">
+<div class="flex-1 space-y-6">
+<div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600">
+<span class="material-symbols-outlined text-3xl thin-icon">emoji_events</span>
+</div>
+<h3 class="text-3xl font-black tracking-tight text-slate-900">Tournament OS</h3>
+<p class="text-slate-500 leading-relaxed text-lg max-w-sm">End-to-end management from registrations to automated fixture brackets and real-time live scoring.</p>
+<a class="text-emerald-600 font-bold flex items-center gap-2 text-[15px] group-hover:gap-4 transition-all" href="#">
+                        Learn More <span class="material-symbols-outlined text-lg">arrow_right_alt</span>
+</a>
+</div>
+<div class="hidden lg:flex flex-1 relative h-full items-center justify-end">
+<div class="w-full bg-slate-50 rounded-2xl border border-slate-100 p-4 transform translate-x-12 translate-y-6 rotate-[-2deg] shadow-lg">
+<div class="flex items-center justify-between mb-4 px-1">
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Bracket v2</span>
+<div class="flex gap-1">
+<div class="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
+</div>
+</div>
+<div class="space-y-3">
+<div class="h-10 bg-white rounded-lg border border-slate-100 flex items-center px-3 justify-between">
+<span class="text-xs font-bold">Team Alpha</span>
+<span class="text-xs text-emerald-600 font-black">2</span>
+</div>
+<div class="h-10 bg-white rounded-lg border border-slate-100 flex items-center px-3 justify-between">
+<span class="text-xs font-bold">Team Bravo</span>
+<span class="text-xs text-slate-400 font-black">0</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-2 md:row-span-1 bento-card group">
+<div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600 mb-8">
+<span class="material-symbols-outlined text-3xl thin-icon">sports_score</span>
+</div>
+<h3 class="text-2xl font-black tracking-tight text-slate-900 mb-4">Facility Booking</h3>
+<p class="text-slate-500 leading-relaxed mb-10">Ultra-fast reservation system with dynamic pricing and capacity intelligence.</p>
+<div class="mt-auto">
+<a class="text-emerald-600 font-bold flex items-center gap-2 text-[15px] group-hover:gap-4 transition-all" href="#">
+                        Learn More <span class="material-symbols-outlined text-lg">arrow_right_alt</span>
+</a>
+</div>
+</div>
+<div class="md:col-span-3 md:row-span-1 bento-card group flex flex-col justify-between overflow-hidden relative">
+<div class="z-10">
+<div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600 mb-6">
+<span class="material-symbols-outlined text-3xl thin-icon">insights</span>
+</div>
+<h3 class="text-3xl font-black tracking-tight text-slate-900 mb-4">Vision AI</h3>
+<p class="text-slate-500 leading-relaxed text-lg max-w-xs mb-8">Advanced computer vision for performance metrics and predictive analytics.</p>
+<a class="text-emerald-600 font-bold flex items-center gap-2 text-[15px] group-hover:gap-4 transition-all" href="#">
+                        Learn More <span class="material-symbols-outlined text-lg">arrow_right_alt</span>
+</a>
+</div>
+<div class="absolute bottom-0 right-0 w-1/2 h-1/2 opacity-20 pointer-events-none translate-x-8 translate-y-8">
+<div class="w-full h-full border-[1px] border-emerald-500 rounded-full flex items-center justify-center">
+<div class="w-4/5 h-4/5 border-[1px] border-emerald-500 rounded-full flex items-center justify-center">
+<div class="w-3/5 h-3/5 border-[1px] border-emerald-500 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-3 md:row-span-1 bento-card group bg-slate-50/50">
+<div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-emerald-600 mb-6 shadow-sm">
+<span class="material-symbols-outlined text-3xl thin-icon">groups</span>
+</div>
+<h3 class="text-2xl font-black tracking-tight text-slate-900 mb-4">Member Core</h3>
+<p class="text-slate-500 leading-relaxed max-w-md mb-8">Comprehensive CRM for athlete life-cycles, subscriptions, and targeted automated communication.</p>
+<div class="mt-auto">
+<a class="text-emerald-600 font-bold flex items-center gap-2 text-[15px] group-hover:gap-4 transition-all" href="#">
+                        Learn More <span class="material-symbols-outlined text-lg">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-slate-50/30">
+<div class="max-w-7xl mx-auto px-8 lg:px-24">
+<div class="text-center mb-20">
+<h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">Voices of Excellence</h2>
+<p class="text-lg text-slate-500 font-medium">How the world's leading sports businesses scale with KhelkudAI.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="testimonial-card">
+<div class="flex gap-1 mb-6 text-emerald-500">
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+</div>
+<p class="text-[17px] leading-relaxed text-slate-700 font-medium mb-10">
+                    "The automation capabilities for tournament brackets alone saved our team over 40 hours of manual work per month. It's truly revolutionary."
+                </p>
+<div class="mt-auto flex items-center gap-4">
+<img alt="User" class="w-10 h-10 rounded-full object-cover border border-slate-100 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5z26pukhUHkWfZDGs73ERWM5rNlzqo2lF-W0CA1i_cfeYhltplOVrHCjdS2xcrDt9eajkwWwSAOgAgUsQGPYCcHEc-N2e5_tuIyz24iKwcctUEs_kh5p7BKnuAD3lTvjFUltbRg16Hq4n9iSFQT5OlQmSPzpJbmcwWfl_QXH0bLM_fAdYFGwOy0KB_KECS_iylrcrTm-dhyn_7oM9M480ylEa-ckS8uEzCXo9YanJDMIzQjC9OHJACq8t82Bev0sta7orU_FBGj0k"/>
+<div>
+<h4 class="text-[14px] font-bold text-slate-900 leading-none">Marcus Thorne</h4>
+<p class="text-[12px] font-medium text-slate-400 mt-1">Tournament Director</p>
+</div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="flex gap-1 mb-6 text-emerald-500">
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+</div>
+<p class="text-[17px] leading-relaxed text-slate-700 font-medium mb-10">
+                    "KhelkudAI gives us a level of visibility into our facility metrics that we never thought possible. Revenue increased by 22% in the first quarter."
+                </p>
+<div class="mt-auto flex items-center gap-4">
+<img alt="User" class="w-10 h-10 rounded-full object-cover border border-slate-100 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXXTHXEw02HoIWtOAr3JFRmB2HRsJQ3f7ytH8z8o89rAjwwpynlNr1aXbaPmspQQXckRN_9tNnzc7avuomPpm-vvzcFOHsa7AHIv2dxCJcY5bSKkU6af7bNUCJxsvIidLnwGe89YTmtjyfTrsX9IAvYpl_VydfNaRUZpkvX1I58BaOir9IOxHXi20RiE_wxgX3ybO__wXO4gnWIf1iC7YTMavvxRAFaoqFgDqQOoFeymho_UUIYOmCsRBZ1xgA9kqCgHZPskyrY3w0"/>
+<div>
+<h4 class="text-[14px] font-bold text-slate-900 leading-none">Sarah Chen</h4>
+<p class="text-[12px] font-medium text-slate-400 mt-1">Academy Owner</p>
+</div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="flex gap-1 mb-6 text-emerald-500">
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+<span class="material-symbols-outlined fill-1 text-[20px]">star</span>
+</div>
+<p class="text-[17px] leading-relaxed text-slate-700 font-medium mb-10">
+                    "The Vision AI feature has become our primary scouting tool. It provides elite-level data analysis that was previously only available to pro clubs."
+                </p>
+<div class="mt-auto flex items-center gap-4">
+<img alt="User" class="w-10 h-10 rounded-full object-cover border border-slate-100 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv2rTPZZeCzYUG0z5QifpsvUoaMCBg0WmFvsPtMsDb1oVv6B_QXN0sphAAyttfCF90V7FJmnQjrBzNEPpBHtjbEI28ihDsYFq4zne15tolca-HZ08MoPINoaR3oiydQKbJU9scf1jvrah3bTyLkasrBkpSZW5SFln-4PtT-JY23t5RNdhBxz-eY1FZ2LEtFV4QKiziTDdfY6SaxeaTBg05fsiZvMTZp-PPBZX0TVSBZgO_AXNt7CPhvkQtWLxxey3BQe4AKK3O9mqY"/>
+<div>
+<h4 class="text-[14px] font-bold text-slate-900 leading-none">David Rodriguez</h4>
+<p class="text-[12px] font-medium text-slate-400 mt-1">Operations Manager</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-slate-50" id="pricing">
+<div class="max-w-7xl mx-auto px-8 lg:px-24">
+<div class="text-center max-w-3xl mx-auto mb-20">
+<h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-6">Plans for Every Ambition</h2>
+<p class="text-lg text-slate-500 font-medium">Transparent, high-performance pricing designed to grow with your organization.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="pricing-card">
+<div class="mb-8">
+<h3 class="text-xl font-bold text-slate-900 mb-2">Pro</h3>
+<p class="text-slate-500 text-sm font-medium">For rising academies and clubs.</p>
+</div>
+<div class="mb-10">
+<div class="flex items-baseline">
+<span class="text-5xl font-black text-slate-900">$299</span>
+<span class="text-slate-400 font-semibold ml-2">/mo</span>
+</div>
+</div>
+<ul class="space-y-5 mb-12 flex-1">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 font-bold text-xl">check_circle</span>
+<span class="text-slate-600 font-medium text-[15px]">Advanced Facility Management</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 font-bold text-xl">check_circle</span>
+<span class="text-slate-600 font-medium text-[15px]">Up to 5 Tournaments / Month</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 font-bold text-xl">check_circle</span>
+<span class="text-slate-600 font-medium text-[15px]">Core Member CRM</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 font-bold text-xl">check_circle</span>
+<span class="text-slate-600 font-medium text-[15px]">Standard Revenue Analytics</span>
+</li>
+</ul>
+<a class="w-full text-center py-4 rounded-2xl border-2 border-slate-900 text-slate-900 font-bold hover:bg-slate-900 hover:text-white transition-all" href="#">Get Started</a>
+</div>
+<div class="pricing-card relative border-emerald-500/30 ring-1 ring-emerald-500/20 shadow-[0_40px_100px_-20px_rgba(16,185,129,0.12)]">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[11px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full">
+                    Most Popular
+                </div>
+<div class="mb-8">
+<h3 class="text-xl font-bold text-slate-900 mb-2">Enterprise</h3>
+<p class="text-slate-500 text-sm font-medium">Comprehensive scale for elite hubs.</p>
+</div>
+<div class="mb-10">
+<div class="flex items-baseline">
+<span class="text-5xl font-black text-slate-900">$849</span>
+<span class="text-slate-400 font-semibold ml-2">/mo</span>
+</div>
+</div>
+<ul class="space-y-5 mb-12 flex-1">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 font-bold text-xl">check_circle</span>
+<span class="text-slate-600 font-bold text-[15px]">Unlimited Tournament Brackets</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 font-bold text-xl">check_circle</span>
+<span class="text-slate-600 font-medium text-[15px]">Multi-location Management</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 font-bold text-xl">check_circle</span>
+<span class="text-slate-600 font-medium text-[15px]">Full Vision AI Suite (Basic)</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 font-bold text-xl">check_circle</span>
+<span class="text-slate-600 font-medium text-[15px]">Priority Support Access</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 font-bold text-xl">check_circle</span>
+<span class="text-slate-600 font-medium text-[15px]">Advanced CRM Automations</span>
+</li>
+</ul>
+<a class="w-full text-center py-4 rounded-2xl bg-slate-900 text-white font-bold hover:bg-emerald-600 transition-all shadow-xl shadow-slate-900/10" href="#">Start 14-Day Trial</a>
+</div>
+<div class="pricing-card">
+<div class="mb-8">
+<h3 class="text-xl font-bold text-slate-900 mb-2">Elite</h3>
+<p class="text-slate-500 text-sm font-medium">Bespoke solutions for global chains.</p>
+</div>
+<div class="mb-10">
+<div class="flex items-baseline">
+<span class="text-5xl font-black text-slate-900">Custom</span>
+</div>
+</div>
+<ul class="space-y-5 mb-12 flex-1">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 font-bold text-xl">check_circle</span>
+<span class="text-slate-600 font-medium text-[15px]">White-label Client Apps</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 font-bold text-xl">check_circle</span>
+<span class="text-slate-600 font-medium text-[15px]">Custom API &amp; Data Integrations</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 font-bold text-xl">check_circle</span>
+<span class="text-slate-600 font-medium text-[15px]">Dedicated Success Manager</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-emerald-500 font-bold text-xl">check_circle</span>
+<span class="text-slate-600 font-medium text-[15px]">On-site Vision AI Training</span>
+</li>
+</ul>
+<a class="w-full text-center py-4 rounded-2xl border-2 border-slate-900 text-slate-900 font-bold hover:bg-slate-900 hover:text-white transition-all" href="#">Contact Sales</a>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-[#F8FAFC]">
+<div class="max-w-7xl mx-auto px-8 lg:px-24">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+<div>
+<h2 class="text-5xl md:text-6xl font-[900] text-slate-900 leading-[1.1] tracking-tight mb-8">Ready to scale<br/>your vision?</h2>
+<p class="text-xl text-slate-500 font-medium mb-16 max-w-md leading-relaxed">
+                    Join the next generation of sports organizations optimizing their future with our intelligent enterprise platform.
+                </p>
+<div class="space-y-10">
+<div class="flex items-start gap-5">
+<div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600 flex-shrink-0">
+<span class="material-symbols-outlined thin-icon text-2xl">alternate_email</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">Email Inquiry</p>
+<p class="text-lg font-bold text-slate-900">hello@khelkud.ai</p>
+</div>
+</div>
+<div class="flex items-start gap-5">
+<div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600 flex-shrink-0">
+<span class="material-symbols-outlined thin-icon text-2xl">location_on</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">Global HQ</p>
+<p class="text-lg font-bold text-slate-900">Innovation Circle, Suite 402<br/>Singapore 189767</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -inset-10 bg-emerald-400/5 blur-3xl rounded-full opacity-50 -z-10"></div>
+<form class="glass p-10 md:p-12 rounded-4xl border-slate-200/50 shadow-2xl shadow-slate-200/50 space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-[13px] font-bold text-slate-900 ml-1 uppercase tracking-wider" for="name">Name</label>
+<input class="contact-input" id="name" placeholder="John Carter" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-[13px] font-bold text-slate-900 ml-1 uppercase tracking-wider" for="email">Email</label>
+<input class="contact-input" id="email" placeholder="john@example.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[13px] font-bold text-slate-900 ml-1 uppercase tracking-wider" for="organization">Organization</label>
+<input class="contact-input" id="organization" placeholder="Elite Sports Academy" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-[13px] font-bold text-slate-900 ml-1 uppercase tracking-wider" for="message">Message</label>
+<textarea class="contact-input min-h-[160px] resize-none" id="message" placeholder="How can we help you scale?"></textarea>
+</div>
+<button class="w-full bg-emerald-600 text-white py-5 rounded-2xl font-bold text-lg hover:bg-emerald-700 hover:-translate-y-0.5 transition-all shadow-xl shadow-emerald-600/20 active:scale-[0.98] mt-4" type="submit">
+                        Send Message
+                    </button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-slate-950 border-t border-slate-800 relative overflow-hidden">
+<div class="max-w-7xl mx-auto px-8 lg:px-24 pt-24 pb-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-24">
+<div class="lg:col-span-5 space-y-12">
+<div>
+<div class="flex items-center gap-3 mb-8">
+<img alt="Logo" class="h-8 w-auto brightness-0 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAVVVcvNpPdRaal5CtJN5jhnseRemcoZt5Z-iHpjW2954441zzL6rT1RUt0MdB4GY2IbTykVKIGiX7Sj2dmcb5HW57ZTxTmawfc8CfJIppLDg4P3MylBirXL8Hb8OCBg1iAxpaFWSTDpY1x63b_xGT5CHpOMbjeFbDRElvXYNNuaYBP_sM5kqkbKAsQw7NUGvbOONmqZb1a8GAHosat92dQWFPV3M6F9oSpK5wgt_lH7f-JWxKf47-xKA122u64A8O02kKM2i5pOVn"/>
+<span class="text-xl font-black text-white tracking-tight">KHELKUD<span class="text-emerald-500">AI</span></span>
+</div>
+<p class="max-w-md text-slate-300 font-medium leading-relaxed text-lg">
+                        The definitive intelligence platform for the next generation of sports excellence. Building tools that transform how the world plays.
+                    </p>
+</div>
+<div class="space-y-6">
+<h5 class="text-white font-bold text-sm uppercase tracking-widest">Subscribe to Insight</h5>
+<div class="flex flex-col sm:flex-row gap-3 max-w-md">
+<div class="relative flex-grow group">
+<input class="w-full bg-white/5 border border-slate-800 rounded-2xl px-6 py-4 text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500/40 transition-all placeholder:text-slate-500" placeholder="Enter your work email" type="email"/>
+</div>
+<button class="bg-emerald-600 text-white px-8 py-4 rounded-2xl font-bold text-sm hover:bg-emerald-700 hover:-translate-y-0.5 transition-all shadow-lg shadow-emerald-600/10 active:scale-95 whitespace-nowrap">
+                            Join Now
+                        </button>
+</div>
+<p class="text-[11px] text-slate-400 font-medium">Weekly insights on sports tech and performance. No spam ever.</p>
+</div>
+<div class="flex items-center gap-5 pt-4">
+<a class="w-12 h-12 rounded-2xl bg-white/5 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-emerald-500 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all" href="#">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.315 2c2.43 0 2.784.012 3.823.06 1.062.049 1.733.222 2.128.375a3.864 3.864 0 011.408.916 3.864 3.864 0 01.916 1.408c.153.395.326 1.066.375 2.128.048 1.039.06 1.393.06 3.823s-.012 2.784-.06 3.823c-.049 1.062-.222 1.733-.375 2.128a3.864 3.864 0 01-.916 1.408 3.864 3.864 0 01-1.408.916c-.395.153-1.066.326-2.128.375-1.039.048-1.393.06-3.823.06s-2.784-.012-3.823-.06c-1.062-.049-1.733-.222-2.128-.375a3.864 3.864 0 01-1.408-.916 3.864 3.864 0 01-.916-1.408c-.153-.395-.326-1.066-.375-2.128C2.012 14.815 2 14.461 2 12.031s.012-2.784.06-3.823c.049-1.062.222-1.733.375-2.128a3.864 3.864 0 01.916-1.408 3.864 3.864 0 011.408-.916c.395-.153 1.066-.326 2.128-.375C9.25 2.012 9.604 2 12.034 2h.281zm0-2h-.356c-2.474 0-2.825.012-4.045.068-1.218.056-2.052.251-2.782.534a6.38 6.38 0 00-2.3 1.5 6.38 6.38 0 00-1.5 2.3c-.283.73-.478 1.564-.534 2.782-.056 1.22-.068 1.571-.068 4.045s.012 2.825.068 4.045c.056 1.218.251 2.052.534 2.782a6.38 6.38 0 001.5 2.3 6.38 6.38 0 002.3 1.5c.73.283 1.564.478 2.782.534 1.22.056 1.571.068 4.045.068s2.825-.012 4.045-.068c1.218-.056 2.052-.251 2.782-.534a6.38 6.38 0 002.3-1.5 6.38 6.38 0 001.5-2.3c.283-.73.478-1.564.534-2.782.056-1.22.068-1.571.068-4.045s-.012-2.825-.068-4.045c-.056-1.218-.251-2.052-.534-2.782a6.38 6.38 0 00-1.5-2.3 6.38 6.38 0 00-2.3-1.5c-.73-.283-1.564-.478-2.782-.534-1.22-.056-1.571-.068-4.045-.068zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+</a>
+<a class="w-12 h-12 rounded-2xl bg-white/5 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-emerald-500 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all" href="#">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+</a>
+<a class="w-12 h-12 rounded-2xl bg-white/5 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-emerald-500 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all" href="#">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</a>
+<a class="w-12 h-12 rounded-2xl bg-white/5 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-emerald-500 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all" href="#">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg>
+</a>
+</div>
+</div>
+<div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-12 lg:gap-8">
+<div class="space-y-6">
+<h5 class="text-white font-bold text-[13px] uppercase tracking-widest">Platform</h5>
+<ul class="space-y-4">
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">Dashboard</a></li>
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">Tournament OS</a></li>
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">Vision AI</a></li>
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">API Access</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h5 class="text-white font-bold text-[13px] uppercase tracking-widest">Solutions</h5>
+<ul class="space-y-4">
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">For Clubs</a></li>
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">For Academies</a></li>
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">For Organizers</a></li>
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">Global Scalability</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h5 class="text-white font-bold text-[13px] uppercase tracking-widest">Company</h5>
+<ul class="space-y-4">
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">About Us</a></li>
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">Careers</a></li>
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">Press</a></li>
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h5 class="text-white font-bold text-[13px] uppercase tracking-widest">Resources</h5>
+<ul class="space-y-4">
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">Support</a></li>
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">Documentation</a></li>
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">Privacy</a></li>
+<li><a class="text-slate-400 font-medium text-[15px] hover:text-emerald-500 transition-colors" href="#">Terms</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="pt-12 border-t border-slate-800/80 flex flex-col lg:flex-row justify-between items-center gap-8">
+<div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+<p class="text-sm font-medium text-slate-400">© 2024 KhelkudAI Technologies. Designed for excellence.</p>
+<div class="flex items-center gap-2 bg-emerald-500/5 px-3 py-1.5 rounded-full border border-emerald-500/10">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+<span class="text-[11px] font-bold text-emerald-500 uppercase tracking-tight">Status: All Systems Operational</span>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<a class="text-sm font-medium text-slate-400 hover:text-emerald-500 transition-colors" href="#">Cookies Policy</a>
+<a class="text-sm font-medium text-slate-400 hover:text-emerald-500 transition-colors" href="#">Legal</a>
+<a class="text-sm font-medium text-slate-400 hover:text-emerald-500 transition-colors" href="#">Security</a>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-emerald-500/5 rounded-full blur-[100px] opacity-40 pointer-events-none"></div>
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-slate-800/20 rounded-full blur-[100px] opacity-40 pointer-events-none"></div>
+</footer>
+</body>
+</html>
